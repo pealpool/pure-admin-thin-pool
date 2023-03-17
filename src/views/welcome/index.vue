@@ -1,37 +1,70 @@
-<!--<script lang="ts" setup>
-defineOptions({
-  name: "Welcome"
-});
-</script>-->
-<script>
+<script lang="ts" setup>
 import formCreate from "@form-create/element-ui";
-
-export default {
-  name: "Welcome",
-  data() {
-    return {
-      fapi: null,
-      rule: formCreate.parseJson(
-        '[{"type":"input","field":"F1kt5y8pzlkrq","title":"输入框","info":"","_fc_drag_tag":"input","hidden":false,"display":true},{"type":"inputNumber","field":"Frqm5y8pzltbl","title":"计数器","info":"","_fc_drag_tag":"inputNumber","hidden":false,"display":true},{"type":"switch","field":"F5wp1nif7w5bcs","title":"开关","info":"","_fc_drag_tag":"switch","hidden":false,"display":true},{"type":"select","field":"Fzlm1nif7w6oqn","title":"选择器","info":"","effect":{"fetch":""},"options":[{"value":"1","label":"选项1"},{"value":"2","label":"选项2"}],"_fc_drag_tag":"select","hidden":false,"display":true}]'
-      ),
-      option: formCreate.parseJson(
-        '{"form":{"labelPosition":"right","size":"small","labelWidth":"125px","hideRequiredAsterisk":false,"showMessage":true,"inlineMessage":false},"submitBtn":true,"resetBtn":true}'
-      )
-    };
+//获取 formCreate 组件
+const FormCreate = formCreate.$form();
+const rule = [
+  {
+    type: "input",
+    field: "Fx2i5y9a3od7o",
+    title: "输入框",
+    info: "",
+    _fc_drag_tag: "input",
+    hidden: false,
+    display: true
   },
-  methods: {
-    onSubmit(formData) {
-      //todo 提交表单
-      console.log(formData);
-    }
+  {
+    type: "upload",
+    field: "Frad5y9a3nh69",
+    title: "上传",
+    info: "",
+    props: {
+      action: "",
+      onSuccess:
+        "[[FORM-CREATE-PREFIX-onSuccess(u,s){s.url=u.data.url}-FORM-CREATE-SUFFIX]]"
+    },
+    _fc_drag_tag: "upload",
+    hidden: false,
+    display: true
+  },
+  {
+    type: "checkbox",
+    field: "Fcuc5y9a3ot35",
+    title: "多选框",
+    info: "",
+    effect: {
+      fetch: ""
+    },
+    options: [
+      {
+        value: "1",
+        label: "选项1"
+      },
+      {
+        value: "2",
+        label: "选项2"
+      }
+    ],
+    _fc_drag_tag: "checkbox",
+    hidden: false,
+    display: true
   }
+];
+
+const option = {
+  form: {
+    labelPosition: "right",
+    size: "small",
+    labelWidth: "125px",
+    hideRequiredAsterisk: false,
+    showMessage: true,
+    inlineMessage: false
+  },
+  submitBtn: true,
+  resetBtn: false
 };
 </script>
 <template>
-  <form-create
-    v-model="fapi"
-    :rule="rule"
-    :option="option"
-    @submit="onSubmit"
-  />
+  <div class="w-96">
+    <FormCreate :rule="rule" :option="option" />
+  </div>
 </template>
