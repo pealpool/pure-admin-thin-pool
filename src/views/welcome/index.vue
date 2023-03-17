@@ -62,9 +62,13 @@ const option = {
   submitBtn: true,
   resetBtn: false
 };
+
+const onSubmit = (formData: any) => {
+  console.log(formData);
+};
 </script>
 <template>
   <div class="w-96">
-    <FormCreate :rule="rule" :option="option" />
+    <FormCreate :rule="rule" :option="option" @submit="onSubmit" />
   </div>
 </template>
